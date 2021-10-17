@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>RSS Demo</title>
+</head>
+<body>
+	<h2>RSS Demo</h2>
+	<table border='1' id="demo"></table>
+	<script>
+		var xhttp = new XMLHttpRequest();
+		xhttp.onreadystatechange = function() {
+			if (xhttp.readyState == 4 && xhttp.status == 200) {
+				var xmlDoc = xhttp.responseXML;
+				var txt = "<tr><th>pubDate<th>title<th>link";
+				var pubDates = xmlDoc.getElementsByTagName("pubDate");
+				var titles = xmlDoc.getElementsByTagName("title");
+				
+				var links = xmlDoc.getElementsByTagName("link");
+
+				for (let i = 0; i < pubDates.length; i++) {
+					txt += "<tr><td>" + pubDates[i].firstChild.nodeValue;
+					txt += "<td>" + titles[i].firstChild.nodeValue;
+					
+					txt += "<td><a href='" + links[i].firstChild.nodeValue +"'>" 
+						+ links[i].firstChild.nodeValue + "</a>";
+
+					
+				}
+				document.getElementById("demo").innerHTML = txt;
+			}
+		}
+		xhttp.open("GET", "../GetRSS", true);
+		xhttp.send();
+	</script>
+</body>
+</html>

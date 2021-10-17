@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>$.post()</title>
+	<script src="http://code.jquery.com/jquery-1.12.4.min.js"></script>
+</head>
+<body>
+	<h2>$.post Demo</h2>
+	<div id="demo"></div>
+	
+	<script>
+		$.post("NameCity.jsp",
+			{ name: "Stephen", city: "Tainan" },
+			function(data, status) {
+				if (status == "success")
+					$("#demo").html(data);
+	    	});
+	</script>
+</body>
+</html>

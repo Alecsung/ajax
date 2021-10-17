@@ -1,0 +1,34 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Serialize</title>
+	<script src="http://code.jquery.com/jquery-1.12.4.min.js"></script>
+</head>
+<body>
+	<h2>Form Serialize Demo</h2>
+	<form>
+		Name: <input type="text" name="name"><p>
+		City: <input type="text" name="city"><p>		
+	</form>
+	<button id="post">Send</button><p>
+	<div id="demo"></div>
+	
+	<script>
+	$("#post").click(function() {
+		$.ajax({
+			url: "NameCity.jsp?" ,
+			type: "GET",
+			data: {
+				name: $("input[name='name']").val(),
+				city: $("input[name='city']").val()
+			},
+			success: function(data) {
+				alert(data);
+				$("#demo").append(data);
+			}
+	    });
+	});
+	</script>
+</body>
+</html>

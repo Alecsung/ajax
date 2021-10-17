@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8"/>
+</head>
+<body>
+	<h2>Get XML File Demo133</h2>
+	<table border='1' id="demo"></table><p>
+	<script>
+		var xhttp = new XMLHttpRequest();
+		xhttp.onreadystatechange = function() {
+			if (xhttp.readyState == 4 && xhttp.status == 200) {
+				var xmlDoc = xhttp.responseXML;
+				var txt = "<tr><th>書籍名稱<th>作者名";
+				var books = xmlDoc.getElementsByTagName("book");
+				for (i = 0; i < books.length; i++) {
+					txt += "<tr>"
+					
+
+					txt += "<td>" + books[i].getAttribute("title");
+
+
+					
+					txt += "<td>" + books[i].getAttribute("author");
+
+				}
+				document.getElementById("demo").innerHTML = txt;
+				var body = document.querySelector("body");
+				var div = document.createElement("div");
+				body.appendChild(div);
+				div.innerHTML = "共" + books.length + "筆資料qqqq";
+			}
+		}
+		xhttp.open("GET", "../res/book2.xml", true);
+		xhttp.send();
+	</script>
+</body>
+</html>
